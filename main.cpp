@@ -1,42 +1,36 @@
 #include <iostream>
+#include <cstring>
+#include "fraction.h"
 using namespace std;
 
-template <class T>
-class Fraction {
-    T x;
-    T y;
-public:
-    Fraction(T x, T y) {
-        this->x = x;
-        this->y = y;
+template <class smth>
+smth my_max(smth a, smth b){
+    if(a > b) return a;
+    else return b;
+}
+int main()
+{
+    char cmd[9] = {};
+    cin >> cmd;
+    if(!strcmp(cmd, "INT")){
+        int a, b;
+        cin >> a >> b;
+        cout << my_max<int> (a,b) << endl;
     }
-    T calculate() { return x/y; }
-    T get_x() { return x; }
-    T get_y() { return y; }
-    void show();
-
-    template <class U>
-    friend ostream &operator << (ostream &out, const Fraction<U> f);
-};
-
-template<class T>
-void Fraction<T>::show() {
-    cout << x << "/" << y;
-}
-
-template<class U>
-ostream &operator << (ostream &out, const Fraction<U> f) {
-    out << f.x << "/" << f.y;
-    return out;
-}
-
-
-int main() {
-    Fraction <int> a(3, 5);
-    Fraction <double> b(3.3, 1.2);
-
-    cout << a << " = " << a.calculate() << endl;
-    cout << b << " = " << b.calculate() << endl;
-
+    else if (!strcmp(cmd, "CHAR")) {
+        char a, b;
+        cin >> a >> b;
+        cout << my_max<char> (a,b) << endl;
+    }
+    else if (!strcmp(cmd, "FRACTION")) {
+        Fraction a, b;
+        cin >> a >> b;
+        cout << my_max<Fraction> (a,b) << endl;
+    }
     return 0;
 }
+
+
+
+
+
